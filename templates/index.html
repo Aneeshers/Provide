@@ -1,0 +1,94 @@
+{% extends "layout.html" %} {% block title %} Explore {% endblock %} {% block main %}
+
+<!-- Gallery viewer taken from (although slightly edited) https://www.w3schools.com/css/tryit.asp?filename=trycss_image_gallery_responsive -->
+
+<style>
+    div.gallery {
+        border: 1px solid rgb(116, 203, 243);
+    }
+    
+    div.gallery:hover {
+        background-color: rgb(116, 203, 243);
+    }
+    
+    div.gallery img {
+        padding: 10px;
+        width: 100%;
+        height: 20vw;
+    }
+    
+    div.desc {
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        display: block;
+        /* or inline-block */
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        max-height: 4.2em;
+        min-height: 4.2em;
+        line-height: 1.8em;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    .responsive {
+        height: 10px;
+        padding-bottom: 660px;
+        padding-right: 20px;
+        padding-left: 20px;
+        float: left;
+        width: 24.99999%;
+    }
+    
+    @media only screen and (max-width: 700px) {
+        .responsive {
+            width: 49.99999%;
+            margin: 6px 0;
+        }
+    }
+    
+    @media only screen and (max-width: 500px) {
+        .responsive {
+            width: 100%;
+        }
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+<h1> Explore </h1>
+
+<form action="/" method="post">
+    <h3>What are you looking for?</h3>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="search" name="search" placeholder="i.e cookies" type="text">
+    </div>
+    <button class="btn btn-dark" type="submit">Look up!</button>
+</form>
+
+{% for post in subscriptionplans %}
+
+<div class="responsive">
+    <div class="gallery">
+        <a target="_blank">
+            <img src={{post.val().image_url}} alt="Cinque Terre" width="600" height="400">
+            <form action="/" method="post">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id={{post.key()}} name={{post.key()}} placeholder="i.e cookies" type="text" hidden>
+            </form>
+        </a>
+        <div class="desc" style="font-weight: 700;">{{post.val().name}}</div>
+        <div class="desc">{{post.val().description|truncate(50)}}</div>
+        <div class="desc">Price: ${{post.val().price}}/Month</div>
+        <div class="desc">by {{post.val().author}}</div>
+    </div>
+</div>
+
+{% endfor %} {% endblock %}

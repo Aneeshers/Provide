@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block title %} Explore {% endblock %} {% block main %}
+
+<!-- Gallery viewer taken from (although slightly edited) https://www.w3schools.com/css/tryit.asp?filename=trycss_image_gallery_responsive -->
+
+<style>
+    .h1 {
+        font-family: "Garamond", sans-serif;
+    }
+    
+    div.gallery img {
+        padding: 10px;
+        width: 30%;
+        height: 30%;
+    }
+    
+    .desc {
+        color: #fff;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        text-align: center;
+        font-family: "Times New Roman", serif;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    .responsive {
+        max-height: 100px;
+        padding-bottom: 500px;
+        padding-right: 20px;
+        padding-left: 20px;
+        width: 90%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    @media only screen and (max-width: 700px) {
+        .responsive {
+            width: 49.99999%;
+            margin: 6px 0;
+        }
+    }
+    
+    @media only screen and (max-width: 500px) {
+        .responsive {
+            width: 100%;
+        }
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+
+{% for post in subscriptionplans %}
+<h1 class="h1" style="font-weight: 400;"> {{post.val().name}} </h1>
+<div class="responsive">
+    <div class="gallery">
+        <a target="_blank">
+            <img src={{post.val().image_url}} alt="Cinque Terre" width="600" height="400">
+            <form action="/join/{{post.key()}}" method="post">
+                <button class="btn btn-dark" type="submit" name={{post.key()}}>Subscribe</button>
+            </form>
+            <h3 class="desc">{{message}}</h3>
+        </a>
+        <h3 class="desc">{{post.val().description}}</h3>
+        <h3 class="desc">${{post.val().price}}/Month</h3>
+    </div>
+    <h3 class="desc">Founder: {{post.val().author}}</h3>
+    <img src="https://i.ytimg.com/vi/dATvxB6CCZ8/maxresdefault.jpg" alt="Cinque Terre" width="600" height="400">
+</div>
+
+{% endfor %} {% endblock %}s

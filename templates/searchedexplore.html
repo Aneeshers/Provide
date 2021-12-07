@@ -1,0 +1,83 @@
+{% extends "layout.html" %} {% block title %} Explore {% endblock %} {% block main %}
+
+<!-- Gallery viewer taken from (although slightly edited) https://www.w3schools.com/css/tryit.asp?filename=trycss_image_gallery_responsive -->
+
+<style>
+    div.gallery {
+        border: 1px solid #ccc;
+    }
+    
+    div.gallery:hover {
+        background-color: #777;
+        border: 1px solid #777;
+    }
+    
+    div.gallery img {
+        padding: 10px;
+        width: 100%;
+        height: auto;
+    }
+    
+    div.desc {
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    .responsive {
+        padding: 20px 20px;
+        float: left;
+        width: 24.99999%;
+    }
+    
+    @media only screen and (max-width: 700px) {
+        .responsive {
+            width: 49.99999%;
+            margin: 6px 0;
+        }
+    }
+    
+    @media only screen and (max-width: 500px) {
+        .responsive {
+            width: 100%;
+        }
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+<h1> Results </h1>
+
+<form action="/index" method="post">
+    <h3>What are you looking for?</h3>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="search" name="search" placeholder="i.e cookies" type="text">
+    </div>
+    <button class="btn btn-dark" type="submit">Look up!</button>
+</form>
+
+
+{% for i in range(16) %}
+
+<div class="responsive">
+    <div class="gallery">
+        <a target="_blank" href="/buy">
+            <img src="https://i.imgur.com/9FeNZwH.jpg" alt="Cinque Terre" width="600" height="400">
+        </a>
+        <div class="desc">Description</div>
+        <div class="desc">Pickup/delivery details</div>
+        <div class="desc">Monthly price</div>
+    </div>
+</div>
+
+
+
+{% endfor %} {% endblock %}

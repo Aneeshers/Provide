@@ -1,0 +1,26 @@
+{% extends "layout.html" %} {% block title %} Register! {% endblock %} {% block main %}
+<!-- Form to register -->
+
+<style>
+    .note {
+        margin-bottom: 100px;
+    }
+</style>
+
+<form action="/register" method="post">
+    {% if message %}
+    <p class="error">{{message}}</p>
+    {% endif %}
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Email" type="text">
+    </div>
+    <div class="mb-3">
+        <b> Password must be more than 6 characters</b>
+        <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+    </div>
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="confimation" name="confirmation" placeholder="Confirm password" type="password">
+    </div>
+    <button class="btn btn-primary" type="submit">Register</button>
+</form>
+{% endblock %}
