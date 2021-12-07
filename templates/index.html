@@ -82,6 +82,7 @@
             <img src={{post.val().image_url}} alt="Cinque Terre" width="600" height="400">
             <form action="/" method="post">
                 <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id={{post.key()}} name={{post.key()}} placeholder="i.e cookies" type="text" hidden>
+                <button class="btn btn-dark" type="submit" name={{post.key()}}>More Info</button>
             </form>
         </a>
         <div class="desc" style="font-weight: 700;">{{post.val().name}}</div>
