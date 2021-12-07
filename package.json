@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@material/button": "^13.0.0",
+    "@material/ripple": "^13.0.0"
+  }
+}
